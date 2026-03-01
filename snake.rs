@@ -1,12 +1,13 @@
 use std::io;
 
-fn print_box(pos: &[i32; 2]) {
+fn print_box(pos: &[i32; 2], food: &[i32; 2]) {
     for r in 0..10 {
         for c in 0..10 {
             //drawing time
             //the whole if/else block evaluates to a character
             let ch = 
-            if r == pos[0] && c == pos[1] { 'o' }
+            if r == pos[0] && c == pos[1] { 'o' } 
+            else if r == food[0] && c == food[1] { 'f' }
             else { '.' };
             print!("{}", ch);
         }
@@ -18,10 +19,11 @@ fn print_box(pos: &[i32; 2]) {
 
 fn main() {
     let mut pos: [i32; 2] = [2, 1];
+    let mut food: [i32; 2] = [5, 5];
     let mut cmd = String::new();
 
     loop {
-        print_box(&pos); 
+        print_box(&pos, &food); 
         println!("\nWhich direction? Which direction? (u)p (d)own (l)eft (r)right (q)uit");
         
         cmd.clear(); //we need to clear because read_line appends to the end of the string
